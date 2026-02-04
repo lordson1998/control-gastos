@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 export default function BudgetForm() {
 
@@ -9,6 +9,11 @@ export default function BudgetForm() {
        
 
     }
+
+    const isValid = useMemo(() => {
+        return isNaN(budget) || budget <= 0
+
+    },[budget])
 
 
 
@@ -32,7 +37,8 @@ export default function BudgetForm() {
             <input
              type="submit" 
              value="definir presupuesto"
-             className="bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-black uppercase"
+             className="disabled:opacity-40 bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-black uppercase"
+             disabled={isValid}
             />
         </form>
     )
