@@ -7,13 +7,13 @@ type budgedContextProps  = {
 }
 
 type budgedProviderProps = {
-    Children : ReactNode
+    children : ReactNode
  
 }
 
-export const BudgetContext = createContext<budgedContextProps>({} as budgedContextProps )
+export const BudgetContext = createContext<budgedContextProps>(null!)
 
-export const BudgetProvider = ({Children}: budgedProviderProps) => {
+export const BudgetProvider = ({children}: budgedProviderProps) => {
 
     const [state , dispatch] = useReducer(budgetreducer, initialState)
 
@@ -24,7 +24,7 @@ export const BudgetProvider = ({Children}: budgedProviderProps) => {
           value={{
             state, dispatch
           }} >
-            {Children}
+            {children}
         </BudgetContext.Provider>
 
     )
